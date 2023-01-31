@@ -1,0 +1,26 @@
+.venv
+venv/
+ENV/
+
+# Others
+.DS_Store
+*.sqlite
+.vscode
+celerybeat-schedule.db
+.mypy_cache
+.coverage
+htmlcov
+# static files
+static
+cache.py
+test.py
+seed.py
+__pycache__
+
+# management command outputs
+data/management/output
+scripts
+
+.env*
+
+.gitconfig
