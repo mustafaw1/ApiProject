@@ -7,11 +7,10 @@ from rest_framework import viewsets
 from rest_framework import status
 from django.http import HttpResponse
 from rest_framework.filters import SearchFilter
-from rest_framework import filters
-from django.http import JsonResponse
 from django.core.cache import cache
 import redis
 import json
+
 
 from datetime import timedelta
 
