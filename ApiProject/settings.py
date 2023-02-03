@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import sys
 import os
 from pathlib import Path
 
@@ -33,7 +33,8 @@ ALLOWED_HOSTS = ['0.0.0.0', '192.168.208.1', '192.168.0.148', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'ApiApplication',
+    'university',
+    'django_rename_app',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',

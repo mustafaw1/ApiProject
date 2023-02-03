@@ -23,6 +23,7 @@ cache = redis.Redis(host="localhost", port=6379)
 
 class PersonApiView(APIView):
     serializer_class = PersonSerializer
+
     def get_queryset(self):
         persons = Person.objects.all()
         return persons
@@ -47,7 +48,10 @@ class PersonApiView(APIView):
         if serializer_obj.is_valid():
             serializer_obj.save()
             person = Person.objects.all().filter(id=request.data["id"]).values()
-            return Response({"Message": "New Person Added!", "Person": person}, status=status.HTTP_201_CREATED)
+            return Response(
+                {"Message": "New Person Added!", "Person": person},
+                status=status.HTTP_201_CREATED,
+            )
         else:
             return Response(serializer_obj.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -55,15 +59,17 @@ class PersonApiView(APIView):
         id = request.query_params["id"]
         key = "perosn" + id
         person_object = Person.objects.get(id=id)
-        serializer = PersonSerializer(person_object, data=request.data)             
+        serializer = PersonSerializer(person_object, data=request.data)
         if serializer.is_valid():
             serializer.save()
             json_person = json.dumps(serializer.data)
-            cache.set(key , json_person)
-            return Response({"Message": "Full Person updated!"}, status=status.HTTP_205_RESET_CONTENT)
+            cache.set(key, json_person)
+            return Response(
+                {"Message": "Full Person updated!"},
+                status=status.HTTP_205_RESET_CONTENT,
+            )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
-               
+
     def patch(self, request):
         id = request.query_params["id"]
         key = "perosn" + id
@@ -75,12 +81,12 @@ class PersonApiView(APIView):
             cache.set(key, json_person)
             return Response({"Message": "Partial Person updated!"})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
 
 
 # class for ModelView
 class StudentsViewSet(viewsets.ModelViewSet):
     serializer_class = StudentsSerializer
+
     def get_queryset(self):
         student = Students.objects.all()
         return student
@@ -88,6 +94,7 @@ class StudentsViewSet(viewsets.ModelViewSet):
 
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
+
     def get_queryset(self):
         course = Courses.objects.all()
         return course

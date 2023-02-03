@@ -21,7 +21,7 @@ class Courses(models.Model):
 
 
 class Students(models.Model):
-    profile_image = models.ImageField(upload_to='Images', default='None.jpg')
+    profile_image = models.FileField(upload_to='Images', default='None.jpg')
     name = models.CharField(max_length=50)
     age = models.IntegerField(max_length=200)
     grade = models.CharField(max_length=100)

@@ -18,7 +18,7 @@ from django.urls import path
 from django.urls import re_path as url
 from django.conf.urls.static import static
 from django.conf import settings
-from ApiApplication import views
+from university import views
 from rest_framework import routers
 from django.urls import include
 router = routers.DefaultRouter()
